@@ -17,7 +17,7 @@ refs.form.addEventListener('input', throttle(onFormInput, 500));
 
 function onFormInput(evt) {
   submitData[evt.target.name] = evt.target.value;
-  inputData = JSON.stringify(submitData);
+  const inputData = JSON.stringify(submitData);
   localStorage.setItem(STORAGE_KEY, inputData);
 }
 
