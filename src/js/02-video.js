@@ -13,16 +13,19 @@ player.on(
   'timeupdate',
   throttle(function (data) {
     localStorage.setItem(SAVED_TIME, JSON.stringify(data));
+    console.log(data);
   }, 500)
 );
+const currentStopTime = localStorage.getItem(SAVED_TIME);
+const currentTime = JSON.parse(currentStopTime);
 
-// localStorage.setItem(SAVED_TIME, '');
+player
+  .getCurrentTime(currentTime.seconds)
+  .then(function (seconds) {
+    // seconds = the current playback position
+  })
+  .catch(function (error) {
+    // an error occurred
+  });
 
-// player
-//   .getCurrentTime()
-//   .then(function (seconds) {
-//     // seconds = the current playback position
-//   })
-//   .catch(function (error) {
-//     // an error occurred
-//   });
+player.setCurrentTime(currentTime.seconds || 0);
