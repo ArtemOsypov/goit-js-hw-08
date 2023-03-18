@@ -7,16 +7,16 @@ const SAVED_TIME = 'videoplayer-current-time';
 
 player.on(
   'timeupdate',
-  throttle(function (data) {
-    localStorage.setItem(SAVED_TIME, JSON.stringify(data));
+  throttle(function ({ duration, percent, seconds }) {
+    localStorage.setItem(SAVED_TIME, seconds);
   }, 500)
 );
-const currentStopTime = localStorage.getItem(SAVED_TIME);
-const currentTime = JSON.parse(currentStopTime);
+
+const currentTime = localStorage.getItem(SAVED_TIME || 0);
 
 player
   .getCurrentTime(currentTime.seconds)
   .then(function (seconds) {})
   .catch(function (error) {});
 
-player.setCurrentTime(currentTime.seconds || 0);
+player.setCurrentTime(currentTime);

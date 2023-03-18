@@ -8,8 +8,6 @@ const galary = document.querySelector('.gallery');
 const imageItem = createGalaryItem(galleryItems);
 galary.insertAdjacentHTML('beforeend', imageItem);
 
-galary.addEventListener('click', onGalaryClick);
-
 function createGalaryItem(galleryItems) {
   return galleryItems
     .map(({ preview, original, description }) => {
@@ -19,9 +17,6 @@ function createGalaryItem(galleryItems) {
 </a>`;
     })
     .join('');
-}
-function onGalaryClick(evt) {
-  evt.preventDefault();
 }
 
 const lightbox = new SimpleLightbox('.gallery a', {
